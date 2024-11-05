@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edited by yushun  -->
+<!-- simple user manual
+1. support data type: int/uint/string
+2. if having minus, should asign it using minus attribute
+3. inst type includes: load, save, conv, misc
+-->
+<ROOT ver="xv3dpu" inst_num="13" word_len="32">
+    <!-- Load inst definition  -->
+    <Load opcode="0x00" word_num="7" category="load">
+        <WORD0>
+            <mt_addr pos="0" len="17" type="uint"> </mt_addr>
+            <mt_dst pos="17" len="3" type="uint"> </mt_dst>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <pad_idx pos="0" len="5" type="uint" minus="1"> </pad_idx>
+            <pad_end pos="5" len="6" type="uint"> </pad_end>
+            <pad_start pos="11" len="6" type="uint"> </pad_start>
+            <reserved pos="17" len="1" type="string"> </reserved>
+            <broadcast pos="18" len="4" type="uint"> </broadcast>
+            <block_num pos="22" len="10" type="uint" minus="1"> </block_num>
+        </WORD1>
+
+        <WORD2>
+            <jump_read pos="0" len="16" type="uint" minus="1"> </jump_read>
+            <const_value pos="16" len="8" type="uint"> </const_value>
+            <reg_id pos="24" len="8" type="uint"> </reg_id>
+        </WORD2>
+
+        <WORD3>
+            <channel pos="0" len="15" type="uint" minus="1"> </channel>
+            <length pos="15" len="10" type="uint" minus="1"> </length>
+            <tile_stride_w pos="25" len="2" type="uint" minus="1"> </tile_stride_w>
+            <tile_stride_h pos="27" len="2" type="uint" minus="1"> </tile_stride_h>
+            <if_ping_pong_buffer pos="29" len="1" type="uint"> </if_ping_pong_buffer>
+            <mode_avg pos="30" len="2" type="uint"> </mode_avg>
+        </WORD3>
+
+        <WORD4>
+            <ddr_addr pos="0" len="29" type="uint"> </ddr_addr>
+            <trans_mode pos="29" len="3" type="uint"> </trans_mode>
+        </WORD4>
+
+        <WORD5>
+            <jump_write_endl pos="0" len="18" type="uint" minus="1"> </jump_write_endl>
+            <jump_write pos="18" len="12" type="uint" minus="1"> </jump_write>
+            <reserved pos="30" len="2" type="string"> </reserved>
+        </WORD5>
+
+        <WORD6>
+            <jump_read_endl pos="0" len="21" type="uint"> </jump_read_endl>
+            <sample_scale_w pos="21" len="4" type="uint" minus="1"> </sample_scale_w>
+            <sample_scale_h pos="25" len="4" type="uint" minus="1"> </sample_scale_h>
+            <reserved pos="29" len="3" type="string"> </reserved>
+        </WORD6>
+    </Load>
+
+    <!-- Save inst definition  -->
+    <Save opcode="0x04" word_num="7" category="save">
+        <WORD0>
+            <mt_addr pos="0" len="17" type="uint"> </mt_addr>
+            <const_en pos="17" len="1" type="uint"> </const_en>
+            <argmax pos="18" len="2" type="uint"> </argmax>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <jump_write pos="0" len="16" type="uint" minus="1"> </jump_write>
+            <const_value pos="16" len="8" type="uint"> </const_value>
+            <reg_id pos="24" len="8" type="uint"> </reg_id>
+        </WORD1>
+
+        <WORD2>
+            <channel pos="0" len="12" type="uint" minus="1"> </channel>
+            <length pos="12" len="11" type="uint"> </length>
+            <reserved pos="23" len="8" type="uint"> </reserved>
+            <if_ping_pong_buffer pos="31" len="1" type="uint"> </if_ping_pong_buffer>
+        </WORD2>
+
+        <WORD3>
+            <ddr_addr pos="0" len="29" type="uint"> </ddr_addr>
+            <reserved pos="29" len="3" type="uint"> </reserved>
+        </WORD3>
+
+        <WORD4>
+            <reserved pos="0" len="22" type="uint"> </reserved>
+            <jump_read pos="22" len="10" type="uint" minus="1"> </jump_read>
+        </WORD4>
+
+        <WORD5>
+            <jump_read_endl pos="0" len="19" type="uint"> </jump_read_endl>
+            <reserved pos="19" len="3" type="uint"> </reserved>
+            <block_num pos="22" len="10" type="uint"> </block_num>
+        </WORD5>
+
+        <WORD6>
+            <jump_write_endl pos="0" len="27" type="uint"> </jump_write_endl>
+            <reserved pos="27" len="5" type="uint"> </reserved>
+        </WORD6>
+    </Save>
+
+
+    <!-- ConvInit inst definition  -->
+    <ConvInit opcode="0x09" word_num="7" category="conv">
+        <WORD0>
+            <stride_w pos="0" len="4" type="uint" minus="1"> </stride_w>
+            <stride_h pos="4" len="4" type="uint" minus="1"> </stride_h>
+            <kernel_w pos="8" len="4" type="uint" minus="1"> </kernel_w>
+            <kernel_h pos="12" len="4" type="uint" minus="1"> </kernel_h>
+            <exec_mode pos="16" len="4" type="uint"> </exec_mode>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <tile_owg pos="0" len="8" type="uint" minus="1"> </tile_owg>
+            <tile_ohg pos="8" len="8" type="uint" minus="1"> </tile_ohg>
+            <tile_ocg pos="16" len="8" type="uint" minus="1"> </tile_ocg>
+            <tile_icg pos="24" len="8" type="uint" minus="1"> </tile_icg>
+        </WORD1>
+
+        <WORD2>
+            <ow_iter pos="0" len="8" type="uint" minus="1"> </ow_iter>
+            <oh_iter pos="8" len="8" type="uint" minus="1"> </oh_iter>
+            <oc_iter pos="16" len="8" type="uint" minus="1"> </oc_iter>
+            <ic_iter pos="24" len="8" type="uint" minus="1"> </ic_iter>
+        </WORD2>
+
+        <WORD3>
+            <hsigmoid_in pos="0" len="4" type="uint"> </hsigmoid_in>
+            <shift_hsigmoid pos="4" len="5" type="uint"> </shift_hsigmoid>
+            <shift_hswish pos="9" len="4" type="uint"> </shift_hswish>
+            <aie_mode pos="13" len="3" type="uint"> </aie_mode>
+            <act_type pos="16" len="4" type="uint"> </act_type>
+            <shift_cut pos="20" len="6" type="uint"> </shift_cut>
+            <shift_bias pos="26" len="6" type="uint"> </shift_bias>
+        </WORD3>
+
+
+        <WORD4>
+            <conv_num pos="0" len="10" type="uint" minus="1"> </conv_num>
+            <elew_act_type pos="10" len="4" type="uint"> </elew_act_type>
+            <elew_cut pos="14" len="7" type="uint"> </elew_cut>
+            <owp pos="21" len="8" type="uint" minus="1"> </owp>
+            <reserved pos="29" len="3" type="string"> </reserved>
+        </WORD4>
+
+        <WORD5>
+            <lp_mt_addr pos="0" len="17" type="uint"> </lp_mt_addr>
+            <reserved pos="17" len="2" type="string"> </reserved>
+            <tile_en pos="19" len="1" type="uint"> </tile_en>
+            <shift_elew1 pos="20" len="6" type="uint"> </shift_elew1>
+            <shift_elew0 pos="26" len="6" type="uint"> </shift_elew0>
+        </WORD5>
+        <WORD6>
+            <ohp pos="0" len="8" type="uint" minus="1"> </ohp>
+            <reserved pos="8" len="24" type="string"> </reserved>
+        </WORD6>
+    </ConvInit>
+
+    <!-- CONVADDR inst definition  -->
+    <ConvAddr opcode="0x05" word_num="3" category="conv">
+        <WORD0>
+            <h_num pos="0" len="11" type="uint" minus="1"> </h_num>
+            <invalid pos="11" len="1" type="uint"> </invalid>
+            <compression pos="12" len="1" type="uint"> </compression>
+            <last pos="13" len="1" type="uint"> </last>
+            <reserved pos="14" len="3" type="string"> </reserved>
+            <type pos="17" len="3" type="uint"> </type>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <mt_addr pos="0" len="17" type="uint"> </mt_addr>
+            <reserved pos="17" len="14" type="string"> </reserved>
+            <if_ping_pong_buffer pos="31" len="1" type="uint"> </if_ping_pong_buffer>
+        </WORD1>
+
+        <WORD2>
+            <jump_endl pos="0" len="16" type="uint"> </jump_endl>
+            <jump pos="16" len="14" type="uint"> </jump>
+            <reserved pos="30" len="2" type="uint"> </reserved>
+        </WORD2>
+    </ConvAddr>
+
+    <!-- Conv inst definition  -->
+    <Conv opcode="0x08" word_num="2" category="conv">
+        <WORD0>
+            <pad_left pos="0" len="4" type="uint"> </pad_left>
+            <pad_right pos="4" len="8" type="uint"> </pad_right>
+            <ocg_offset pos="12" len="4" type="uint"> </ocg_offset>
+            <icg_offset pos="16" len="4" type="uint"> </icg_offset>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <reserved pos="0" len="17" type="string"> </reserved>
+            <macc_cont pos="17" len="2" type="uint"> </macc_cont>
+            <reuse pos="19" len="1" type="uint"> </reuse>
+            <pad_top pos="20" len="4" type="uint"> </pad_top>
+            <pad_bottom pos="24" len="8" type="uint"> </pad_bottom>
+        </WORD1>
+    </Conv>
+
+    <!-- AluInit inst definition  -->
+    <AluInit opcode="0x01" word_num="8" category="misc">
+        <WORD0>
+            <exec_sub_mode pos="0" len="8" type="uint"> </exec_sub_mode>
+            <exec_mode pos="8" len="12" type="uint"> </exec_mode>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <alu_num pos="0" len="12" type="uint" minus="1"> </alu_num>
+            <input_num pos="12" len="2" type="uint" minus="1"> </input_num>
+            <pad_type pos="14" len="2" type="uint"> </pad_type>
+            <stride_w pos="16" len="8" type="uint" minus="1"> </stride_w>
+            <stride_h pos="24" len="8" type="uint" minus="1"> </stride_h>
+        </WORD1>
+
+        <WORD2>
+            <tile_ohg pos="0" len="8" type="uint" minus="1"> </tile_ohg>
+            <oh_iter pos="8" len="8" type="uint" minus="1"> </oh_iter>
+            <tile_ocg pos="16" len="8" type="uint" minus="1"> </tile_ocg>
+            <oc_iter pos="24" len="8" type="uint" minus="1"> </oc_iter>
+        </WORD2>
+
+        <WORD3>
+            <hsigmoid_in pos="0" len="4" type="uint"> </hsigmoid_in>
+            <shift_hsigmoid pos="4" len="5" type="uint"> </shift_hsigmoid>
+            <shift_hswish pos="9" len="4" type="uint"> </shift_hswish>
+            <b_mode pos="13" len="3" type="uint"> </b_mode>
+            <tile_owg pos="16" len="8" type="uint" minus="1"> </tile_owg>
+            <ow_iter pos="24" len="8" type="uint" minus="1"> </ow_iter>
+        </WORD3>
+
+        <WORD4>
+            <shift_read_0 pos="0" len="4" type="uint"> </shift_read_0>
+            <shift_read_1 pos="4" len="4" type="uint"> </shift_read_1>
+            <shift_read_2 pos="8" len="4" type="uint"> </shift_read_2>
+            <shift_read_3 pos="12" len="4" type="uint"> </shift_read_3>
+            <shift_cut pos="16" len="7" type="uint"> </shift_cut>
+            <shift_bias pos="23" len="6" type="uint"> </shift_bias>
+            <act_type pos="29" len="3" type="uint"> </act_type>
+        </WORD4>
+
+        <WORD5>
+            <kernel_w pos="0" len="10" type="uint" minus="1"> </kernel_w>
+            <kernel_h pos="10" len="10" type="uint" minus="1"> </kernel_h>
+            <cp pos="20" len="9" type="uint" minus="1"> </cp>
+            <aie_mode pos="29" len="3" type="uint"> </aie_mode>
+        </WORD5>
+
+        <WORD6>
+            <owp pos="0" len="6" type="uint" minus="1"> </owp>
+            <ohp pos="6" len="6" type="uint" minus="1"> </ohp>
+            <reserved2 pos="12" len="3" type="string"> </reserved2>
+            <lp_mt_addr pos="15" len="17" type="uint"> </lp_mt_addr>
+        </WORD6>
+
+        <WORD7>
+            <epsilon pos="0" len="32" type="uint"> </epsilon>
+        </WORD7>
+    </AluInit>
+
+    <!-- ALUADDR inst definition  -->
+    <AluAddr opcode="0x03" word_num="3" category="misc">
+        <WORD0>
+            <h_num pos="0" len="11" type="uint" minus="1"> </h_num>
+            <invalid pos="11" len="1" type="uint"> </invalid>
+            <compression pos="12" len="1" type="uint"> </compression>
+            <last pos="13" len="1" type="uint"> </last>
+            <reserved pos="14" len="3" type="uint"> </reserved>
+            <type pos="17" len="3" type="uint"> </type>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <mt_addr pos="0" len="17" type="uint"> </mt_addr>
+            <fix_point pos="17" len="9" type="uint"> </fix_point>
+            <macc_dim pos="26" len="2" type="uint"> </macc_dim>
+            <reserved pos="28" len="3" type="string"> </reserved>
+            <if_ping_pong_buffer pos="31" len="1" type="uint"> </if_ping_pong_buffer>
+        </WORD1>
+
+        <WORD2>
+            <jump_endl pos="0" len="15" type="uint"> </jump_endl>
+            <jump pos="15" len="15" type="uint"> </jump>
+            <id pos="30" len="2" type="uint"> </id>
+        </WORD2>
+    </AluAddr>
+
+    <!-- Alu inst definition  -->
+    <Alu opcode="0x02" word_num="2" category="misc">
+        <WORD0>
+            <pad_right_mt pos="0" len="8" type="uint"> </pad_right_mt>
+            <pad_top pos="8" len="4" type="uint"> </pad_top>
+            <pad_left  pos="12" len="4" type="uint"> </pad_left>
+            <macc_cont pos="16" len="2" type="uint"> </macc_cont>
+            <reuse pos="18" len="1" type="uint"> </reuse>
+            <reserved pos="19" len="1" type="string"> </reserved>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+
+        <WORD1>
+            <pad_right_at pos="0" len="4" type="uint"> </pad_right_at>
+            <pad_bottom_at pos="4" len="4" type="uint"> </pad_bottom_at>
+            <reserved pos="8" len="16" type="string"> </reserved>
+            <pad_bottom_mt pos="24" len="8" type="uint"> </pad_bottom_mt>
+        </WORD1>
+    </Alu>
+
+    <!-- End inst definition  -->
+    <End opcode="0x07" word_num="1" category="save">
+        <WORD0>
+            <reserved pos="0" len="20" type="string"> </reserved>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+    </End>
+
+    <!-- DWCONVLP_IPUGen definition -->
+    <DWCONVLP_IPUGen opcode="0x0B" word_num="17" category="misc">
+        <WORD0>
+            <reserved0 pos="0" len="20" type="uint"> </reserved0>
+            <dpdby pos="20" len="4" type="uint"> </dpdby>
+            <dpdon pos="24" len="4" type="uint"> </dpdon>
+            <opcode pos="28" len="4" type="uint"> </opcode>
+        </WORD0>
+        <WORD1>
+            <kernel_type_dwconv pos="0" len="8" type="uint"> </kernel_type_dwconv>
+            <core_sel pos="8" len="5" type="uint"> </core_sel>
+            <iter_mode pos="13" len="2" type="uint"> </iter_mode>
+            <channel_mode pos="15" len="1" type="uint"> </channel_mode>
+            <aie_ow pos="16" len="16" type="uint"> </aie_ow>
+        </WORD1>
+        <WORD2>
+            <ddr2mt_h_loop pos="0" len="8" type="uint"> </ddr2mt_h_loop>
+            <ddr2mt_w_loop pos="8" len="8" type="uint"> </ddr2mt_w_loop>
+            <ddr2mt_ic_loop pos="16" len="8" type="uint"> </ddr2mt_ic_loop>
+            <aie_oh pos="24" len="8" type="uint"> </aie_oh>
+        </WORD2>
+        <WORD3>
+            <mt2aie_w pos="0" len="8" type="uint"> </mt2aie_w>
+            <mt2aie_h pos="8" len="8" type="uint"> </mt2aie_h>
+            <mt2aie_c pos="16" len="8" type="uint"> </mt2aie_c>
+            <iter_inner pos="24" len="8" type="uint"> </iter_inner>
+        </WORD3>
+        <WORD4>
+            <reserved2 pos="0" len="16" type="uint"> </reserved2>
+            <tile_icg_ pos="16" len="8" type="uint"> </tile_icg_>
+            <reserved1 pos="24" len="8" type="uint"> </reserved1>
+        </WORD4>
+        <WORD5>
+            <reserved3 pos="0" len="32" type="uint"> </reserved3>
+        </WORD5>
+        <WORD6>
+            <step_ptr_ci pos="0" len="8" type="uint"> </step_ptr_ci>
+            <step_ptr_co pos="8" len="8" type="uint"> </step_ptr_co>
+            <reserved4 pos="16" len="16" type="uint"> </reserved4>
+        </WORD6>
+        <WORD7>
+            <reserved5 pos="0" len="24" type="uint"> </reserved5>
+            <kernel_type2_dwconv pos="24" len="8" type="uint"> </kernel_type2_dwconv>
+        </WORD7>
+        <WORD8>
+            <local_offset pos="0" len="16" type="uint"> </local_offset>
+            <kernel_w pos="16" len="4" type="uint"> </kernel_w>
+            <kernel_h pos="20" len="4" type="uint"> </kernel_h>
+            <stride_w pos="24" len="4" type="uint"> </stride_w>
+            <stride_h pos="28" len="4" type="uint"> </stride_h>
+        </WORD8>
+        <WORD9>
+            <shift_bias pos="0" len="8" type="uint"> </shift_bias>
+            <shift_cut pos="8" len="8" type="uint"> </shift_cut>
+            <act_type pos="16" len="8" type="uint"> </act_type>
+            <dwc_ker_words pos="24" len="8" type="uint"> </dwc_ker_words>
+        </WORD9>
+        <WORD10>
+            <reserved6 pos="0" len="32" type="uint"> </reserved6>
+        </WORD10>
+        <WORD11>
+            <ifm_offset pos="0" len="16" type="uint"> </ifm_offset>
+            <ifm_size pos="16" len="16" type="uint"> </ifm_size>
+        </WORD11>
+        <WORD12>
+            <dwconv_wgt_offset pos="0" len="16" type="uint"> </dwconv_wgt_offset>
+            <reserved7 pos="16" len="16" type="uint"> </reserved7>
+        </WORD12>
+        <WORD13>
+            <conv_wgt_offset pos="0" len="16" type="uint"> </conv_wgt_offset>
+            <wgt_size_bd pos="16" len="16" type="uint"> </wgt_size_bd>
+        </WORD13>
+        <WORD14>
+            <ofm_offset pos="0" len="16" type="uint"> </ofm_offset>
+            <ofm_size_bd pos="16" len="16" type="uint"> </ofm_size_bd>
+        </WORD14>
+        <WORD15>
+            <T_step1 pos="0" len="16" type="uint"> </T_step1>
+            <T_step2 pos="16" len="13" type="uint"> </T_step2>
+            <T_mode pos="29" len="1" type="uint"> </T_mode>
+            <T_ifm_enable pos="30" len="1" type="uint"> </T_ifm_enable>
+            <T_ofm_enable pos="31" len="1" type="uint"> </T_ofm_enable>
+        </WORD15>
+        <WORD16>
+            <T_warp1 pos="0" len="8" type="uint"> </T_warp1>
+            <T_warp2 pos="8" len="8" type="uint"> </T_warp2>
+            <shift_hsigmoid pos="16" len="8" type="uint"> </shift_hsigmoid>
+            <hsigmoid_in pos="24" len="4" type="uint"> </hsigmoid_in>
+            <shift_hswish pos="28" len="4" type="uint"> </shift_hswish>
+        </WORD16>
+    </DWCONVLP_IPUGen>
+
+    <!-- DumpBank inst definition  -->
+    <DumpBank opcode="0xFF" word_num="2" category="misc">
+        <WORD0>
+            <save_name pos="0" len="20" type="string"> </save_name>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+        <WORD1>
+            <reserved pos="0" len="10" type="string"> </reserved>
+            <bank_num pos="10" len="8" type="uint"> </bank_num>
+            <bank_start pos="18" len="8" type="uint"> </bank_start>
+            <save_fmt pos="26" len="6" type="uint"> </save_fmt>
+        </WORD1>
+    </DumpBank>
+
+    <!-- DumpDDR inst definition  -->
+    <DumpDDR opcode="0xFE" word_num="4" category="misc">
+        <WORD0>
+            <save_name pos="0" len="20" type="string"> </save_name>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+        <WORD1>
+            <reserved pos="0" len="18" type="string"> </reserved>
+            <reg_id pos="18" len="8" type="uint"> </reg_id>
+            <save_fmt pos="26" len="6" type="uint"> </save_fmt>
+        </WORD1>
+        <WORD2>
+            <ddr_start pos="0" len="32" type="uint"> </ddr_start>
+        </WORD2>
+        <WORD3>
+            <ddr_size pos="0" len="32" type="uint"> </ddr_size>
+        </WORD3>
+    </DumpDDR>
+
+    <!-- DumpDDRSlice inst definition  -->
+    <DumpDDRSlice opcode="0xFD" word_num="6" category="misc">
+        <WORD0>
+            <save_name pos="0" len="20" type="string"> </save_name>
+            <dpdby pos="20" len="4" type="string"> </dpdby>
+            <dpdon pos="24" len="4" type="string"> </dpdon>
+            <opcode pos="28" len="4" type="string"> </opcode>
+        </WORD0>
+        <WORD1>
+            <reserved pos="0" len="18" type="string"> </reserved>
+            <reg_id pos="18" len="8" type="uint"> </reg_id>
+            <save_fmt pos="26" len="6" type="uint"> </save_fmt>
+        </WORD1>
+        <WORD2>
+            <ddr_start pos="0" len="32" type="uint"> </ddr_start>
+        </WORD2>
+        <WORD3>
+            <height_stride pos="0" len="16" type="uint"> </height_stride>
+            <height pos="16" len="16" type="uint"> </height>
+        </WORD3>
+        <WORD4>
+            <width_stride pos="0" len="16" type="uint"> </width_stride>
+            <width pos="16" len="16" type="uint"> </width>
+        </WORD4>
+        <WORD5>
+            <channel_stride pos="0" len="16" type="uint"> </channel_stride>
+            <channel pos="16" len="16" type="uint"> </channel>
+        </WORD5>
+      </DumpDDRSlice>
+
+</ROOT>
